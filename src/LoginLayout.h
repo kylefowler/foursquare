@@ -14,7 +14,6 @@
 #include <QtNetwork/qnetworkreply.h>
 #include <bb/cascades/Application>
 #include <bb/cascades/Container>
-#include <bb/cascades/NavigationControl>
 #include <bb/cascades/Application>
 #include <bb/cascades/QmlDocument>
 #include <bb/cascades/Control>
@@ -28,6 +27,7 @@
 #include "FoursquareApi.h"
 #include "RequestEnvelope.h"
 #include "HomeLayout.h"
+#include <bb/cascades/Page>
 
 using namespace bb::cascades;
 

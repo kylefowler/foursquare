@@ -1,12 +1,12 @@
-import Cascades 4.0
+import bb.cascades 1.0
 
 Container {
     layout: DockLayout {
             }
     ImageView {
         image: "assets://images/background"
-        preferredWidth: 1024
-        preferredHeight: 600
+        preferredWidth: 768
+        preferredHeight: 1280
     }
     Container {
         layout: StackLayout {}
@@ -16,13 +16,11 @@ Container {
         }
         topMargin: 10
         bottomMargin: 10
-        preferredWidth: 1024
-        preferredHeight: 600
+        preferredWidth: 768
+        preferredHeight: 1280
         Label {
             objectName: "userName"
             topMargin: 10; bottomMargin: 10;
-            font: SystemFont.H2
-            textColor: Color.create("#ffffffff")
             layoutProperties: StackLayoutProperties {verticalAlignment: VerticalAlignment.Top; horizontalAlignment: HorizontalAlignment.Center;}
         }
         Button {

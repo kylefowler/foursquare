@@ -6,7 +6,7 @@
 #include <QtNetwork/qnetworkreply.h>
 #include <bb/cascades/Application>
 #include <bb/cascades/Container>
-#include <bb/cascades/NavigationControl>
+#include <bb/cascades/NavigationPane>
 #include "AbstractObjectBase.h"
 
 using namespace bb::cascades;
@@ -28,7 +28,7 @@ public:
     Foursquare();
     ~Foursquare();
     static Foursquare* instance();
-    NavigationControl* nav;
+    NavigationPane* nav;
 private:
     static Foursquare* appInstance;
 private slots:

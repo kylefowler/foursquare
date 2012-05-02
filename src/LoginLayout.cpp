@@ -37,12 +37,6 @@ void LoginLayout::onButtonClicked()
 		loginButton->setText("Logging In");
 		makeLoginRequest();
 	} else {
-		SequentialAnimation* anim = SequentialAnimation::create(loginButton)
-						.add(TranslateTransition::create(loginButton).toX(100).duration(500).easingCurve(StockCurve::QuadraticOut))
-						.add(TranslateTransition::create(loginButton).toX(-100).duration(500).easingCurve(StockCurve::QuadraticIn))
-						.add(TranslateTransition::create(loginButton).toX(50).duration(500).easingCurve(StockCurve::QuadraticOut))
-						.add(TranslateTransition::create(loginButton).toX(0).duration(500).easingCurve(StockCurve::QuadraticIn));
-		anim->play();
 		RequestEnvelope *env = new RequestEnvelope(ApiResponseObjectFactory::UserObj, FoursquareApi::instance()->getUserInfo());
 		connect(env, SIGNAL(requestComplete(AbstractObjectBase*)), this, SLOT(onUserDataLoad(AbstractObjectBase*)));
 		env->makeRequest();
@@ -59,12 +53,6 @@ void LoginLayout::onLoginResponse(bool success) {
 	if(success) {
 		qDebug() << "Login success yayyyyy";
 		loginButton->setText("Login Success");
-		SequentialAnimation* anim = SequentialAnimation::create(loginButton)
-						.add(TranslateTransition::create(loginButton).toX(100).duration(500).easingCurve(StockCurve::QuadraticOut))
-						.add(TranslateTransition::create(loginButton).toX(-100).duration(500).easingCurve(StockCurve::QuadraticIn))
-						.add(TranslateTransition::create(loginButton).toX(50).duration(500).easingCurve(StockCurve::QuadraticOut))
-						.add(TranslateTransition::create(loginButton).toX(0).duration(500).easingCurve(StockCurve::QuadraticIn));
-		anim->play();
 		RequestEnvelope *env = new RequestEnvelope(ApiResponseObjectFactory::UserObj, FoursquareApi::instance()->getUserInfo());
 		//FIXME I think the this keyword is referring to the object doing the emitting and not the tumblr class and causing callback issues
 		connect(env, SIGNAL(requestComplete(AbstractObjectBase*)), this, SLOT(onUserDataLoad(AbstractObjectBase*)));
@@ -79,7 +67,8 @@ void LoginLayout::onLoginResponse(bool success) {
 void LoginLayout::onUserDataLoad(AbstractObjectBase* user) {
 	User* usr = dynamic_cast<User*>(user);
 	HomeLayout *home = new HomeLayout(usr);
-	Foursquare::instance()->nav->push(home);
-	//Application::setScene(home);
+	Page *p = Page::create();
+	p->setContent(home);
+	Foursquare::instance()->nav->push(p);
 }
 
